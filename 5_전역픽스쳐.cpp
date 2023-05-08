@@ -30,7 +30,10 @@ TEST(ImageTest, Blur) { }
 
 // 2) 전역 픽스쳐를 설치하는 방법
 //   1. 전역 변수
+testing::Environment* my_env = testing::AddGlobalTestEnvironment(new MyTestEnvironment);
+
 //   2. main 함수
+#if 0
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
@@ -40,3 +43,4 @@ int main(int argc, char** argv)
 
     return RUN_ALL_TESTS();
 }
+#endif
