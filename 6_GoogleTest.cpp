@@ -57,3 +57,22 @@ TEST(SampleTest, Sample3)
     EXPECT_EQ(user->GetName(), "Tom");
     EXPECT_EQ(user->GetAge(), 42);
 }
+
+// 2. 문자열 비교 단언문
+//  : C의 문자열을 비교할 때 사용됩니다.
+//    char[] / const char*
+//    - EXPECT_STREQ / STRNE
+//    - EXPECT_STRCASEEQ / STRCASENE - 대소문자 무시
+
+TEST(SampleTest2, Sample)
+{
+    std::string s1 = "hello";
+    std::string s2 = "hello";
+    EXPECT_EQ(s1, s2);
+
+    const char* s3 = "Hello";
+    char s4[] = "hello";
+    // EXPECT_EQ(s3, s4); // X
+    // EXPECT_STREQ(s3, s4);
+    EXPECT_STRCASEEQ(s3, s4);
+}
