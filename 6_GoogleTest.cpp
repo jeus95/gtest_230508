@@ -36,3 +36,24 @@ TEST(SampleTest, Sample2)
     EXPECT_EQ(actualFoo, 42);
     EXPECT_EQ(actualGoo, 100);
 }
+
+class User {
+    std::string name = "Tom";
+    int age = 42;
+
+public:
+    std::string GetName() const { return name; }
+    int GetAge() const { return age; }
+};
+
+// User* GetUser() { return new User(); }
+User* GetUser() { return nullptr; }
+
+TEST(SampleTest, Sample3)
+{
+    User* user = GetUser();
+
+    ASSERT_NE(user, nullptr); // 사전 조건 단언문
+    EXPECT_EQ(user->GetName(), "Tom");
+    EXPECT_EQ(user->GetAge(), 42);
+}
