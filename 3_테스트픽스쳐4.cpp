@@ -22,6 +22,7 @@ TEST_F(ImageProcessorTest, BlurImage) { }
 //    신선한 픽스쳐를 유지합니다.
 //  => 각각의 테스트 케이스를 독립적으로 수행할 수 있도록 도움을 줍니다.
 
+//------> 스위트 픽스쳐 설치
 // ts = new ImageProcessorTest;
 // ts->SetUp();
 // ts->ResizeImage();
@@ -33,4 +34,6 @@ TEST_F(ImageProcessorTest, BlurImage) { }
 // ts->BlurImage();
 // ts->TearDown();
 // delete ts;
+//------> 스위트 픽스쳐 해체
+
 // -------
