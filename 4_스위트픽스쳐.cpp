@@ -41,6 +41,20 @@ public:
 //       이후의 테스트의 결과를 신뢰할 수 없는 문제가 발생할 가능성이 있습니다.
 //       "변덕스러운 테스트"
 
+// 1.10 이전 => xUnit Test Framework 용어와 다른 형태로 사용됩니다.
+//  TestCase
+//   - Test
+//   - Test
+//  static void SetUpTestCase()
+//  static void TearDownTestCase()
+
+// 1.10 이후
+//  Test Suite
+//  - TestCase
+//  - TestCase
+//  static void SetUpTestSuite()
+//  static void TearDownTestSuite()
+
 class TerminalTest : public testing::Test {
 protected:
     // Terminal* ts = nullptr;
