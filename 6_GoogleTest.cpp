@@ -92,3 +92,40 @@ TEST(SampleTest3, Sample)
     EXPECT_DOUBLE_EQ(a, b);
     EXPECT_NEAR(a, b, 0.00000000001);
 }
+
+void OpenFile(const std::string& filename)
+{
+    if (filename.empty()) {
+        // throw 1;
+        // throw std::invalid_argument("invalid filename");
+    }
+
+    // ...
+}
+
+// 4. 예외 검증 단언문
+// -     EXPECT_THROW: 기대한 예외 발생 여부
+// - EXPECT_ANY_THROW: 예외 발생 여부
+// -  EXPECT_NO_THROW: 예외가 발생하지 않음을 검증합니다.
+TEST(SampleTest4, OpenFile2)
+{
+    std::string emptyFilename = "";
+
+    EXPECT_THROW(OpenFile(emptyFilename), std::invalid_argument);
+}
+
+// 빈 파일명이 전달되었을 때, invalid_argument 예외가 발생하는지 여부를
+// 검증하고 싶습니다.
+TEST(SampleTest4, OpenFile)
+{
+    std::string emptyFilename = "";
+
+    try {
+        OpenFile(emptyFilename);
+        FAIL() << "예외가 발생하지 않음.";
+    } catch (std::invalid_argument& e) {
+        SUCCEED();
+    } catch (...) {
+        FAIL() << "다른 종류의 예외가 발생하였음.";
+    }
+}
