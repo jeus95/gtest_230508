@@ -63,4 +63,37 @@ TEST(CalcTest, PressPlus2)
 #endif
 
 //--------
+// g++ -E 3_테스트픽스쳐2.cpp -I ./googletest/googletest/include/
 #include <gtest/gtest.h>
+
+//              testing::Test
+//                     |
+//      -----------------------------
+//      |                           |
+// SampleTest_foo_Test      SampleTest_goo_Test
+
+// TEST(SampleTest, foo) { }
+// class SampleTest_foo_Test : public ::testing::Test {};
+
+// TEST(SampleTest, goo) { }
+// class SampleTest_goo_Test : public ::testing::Test {};
+
+//------------------------------------
+// 명시적인 Test Suite 클래스를 제공합니다.
+// => 테스트 유틸리티 함수를 정의하기 위해서
+
+//              testing::Test
+//                     |
+//                 SampleTest   <-- Test Suite Class
+//                     |
+//      -----------------------------
+//      |                           |
+// SampleTest_foo_Test      SampleTest_goo_Test
+
+class SampleTest : public testing::Test { };
+
+// class SampleTest_foo_Test : public SampleTest
+TEST_F(SampleTest, foo) { }
+
+// class SampleTest_goo_Test : public SampleTest
+TEST_F(SampleTest, goo) { }
