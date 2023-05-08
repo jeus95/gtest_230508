@@ -130,6 +130,8 @@ TEST(SampleTest4, OpenFile)
     }
 }
 
+// junit4: @Ignore -> junit5: @Disabled
+
 // 5. 테스트 비활성화
 // 1) 테스트가 유지보수의 대상일 경우, 명시적으로 실패해야 합니다.
 // 2) 테스트를 비활성화하기 위해서, 주석 처리 하면 안됩니다.
