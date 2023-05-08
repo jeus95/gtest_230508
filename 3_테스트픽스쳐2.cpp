@@ -76,6 +76,7 @@ TEST_F(CalcTest, PressPlus2)
 // g++ -E 3_테스트픽스쳐2.cpp -I ./googletest/googletest/include/
 #include <gtest/gtest.h>
 
+// - 암묵적인 Test Suite
 //              testing::Test
 //                     |
 //      -----------------------------
@@ -89,7 +90,7 @@ TEST_F(CalcTest, PressPlus2)
 // class SampleTest_goo_Test : public ::testing::Test {};
 
 //------------------------------------
-// 명시적인 Test Suite 클래스를 제공합니다.
+// - 명시적인 Test Suite 클래스를 제공합니다.
 // => 테스트 유틸리티 함수를 정의하기 위해서
 
 //              testing::Test

@@ -86,13 +86,17 @@ TEST(SampleTest2, Sample)
 TEST(SampleTest3, Sample)
 {
     double a = 0.7;
-    double b = 0.11 * 7;
+    double b = 0.1 * 7;
 
     // EXPECT_EQ(a, b); // X
     EXPECT_DOUBLE_EQ(a, b);
     EXPECT_NEAR(a, b, 0.00000000001);
 }
 
+// 4. 예외 검증 단언문
+// -     EXPECT_THROW: 기대한 예외 발생 여부
+// - EXPECT_ANY_THROW: 예외 발생 여부
+// -  EXPECT_NO_THROW: 예외가 발생하지 않음을 검증합니다.
 void OpenFile(const std::string& filename)
 {
     if (filename.empty()) {
@@ -103,10 +107,6 @@ void OpenFile(const std::string& filename)
     // ...
 }
 
-// 4. 예외 검증 단언문
-// -     EXPECT_THROW: 기대한 예외 발생 여부
-// - EXPECT_ANY_THROW: 예외 발생 여부
-// -  EXPECT_NO_THROW: 예외가 발생하지 않음을 검증합니다.
 TEST(SampleTest4, OpenFile2)
 {
     std::string emptyFilename = "";
@@ -145,6 +145,7 @@ TEST(SampleTest4, OpenFile)
 
 TEST(ImageProcessorTest, DISABLED_BlurImage)
 {
+    // 작성 중입니다.
     FAIL() << "작성 중입니다.";
 }
 

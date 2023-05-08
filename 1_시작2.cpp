@@ -9,6 +9,10 @@
 //   - 테스트케이스
 //   - 테스트케이스
 
+// ImageTest
+// - ResizeImage
+// - BlurImage
+
 // ImageTest.ResizeImage
 TEST(ImageTest, ResizeImage) { }
 

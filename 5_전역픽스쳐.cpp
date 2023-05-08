@@ -78,14 +78,16 @@ TEST(SampleTest, koo)
 //  1. 전역 변수
 //   > 전역 변수의 초기화 순서가 파일별로 순서가 정의되지 않습니다.
 //    => C++ 미지정 동작
+#if 0
 // a.cpp
 testing::Environment* my_env1 = testing::AddGlobalTestEnvironment(new MyTestEnvironment);
 
 // b.cpp
 testing::Environment* my_env2 = testing::AddGlobalTestEnvironment(new MyTestEnvironment2);
+#endif
 
 //  2. main 함수
-#if 0
+#if 1
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
