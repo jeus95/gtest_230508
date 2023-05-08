@@ -25,8 +25,19 @@ public:
 //  3)  Assert: 기대하는 바를 단언합니다.
 
 // CalcTest / CalcSpec
+
+// 3. 테스트케이스 품질
+// 1) 가독성: 테스트가 실패하였을 때, 실패의 원인이 실패 메세지를 통해 드러나는가?
+//          테스트케이스의 이름을 통해, 테스트의 시나리오를 알수 있는가?
+// 2) 유지보수성
+// 3) 신뢰성
+
+#define SPEC(msg) printf(msg "\n")
+
+// TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 TEST(CalcTest, PressPlus)
 {
+    SPEC("2 더하기 2를 하였을 때, 결과가 4가 나오지는 여부를 검증합니다.");
     // Arrange
     Calc* calc = new Calc;
 
@@ -40,6 +51,6 @@ TEST(CalcTest, PressPlus)
     if (calc->Display() == 4) {
         SUCCEED();
     } else {
-        FAIL();
+        FAIL() << "2+2 하였을 때, 기대한 결과와 다릅니다.";
     }
 }
