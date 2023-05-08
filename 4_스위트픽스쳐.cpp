@@ -16,6 +16,8 @@ public:
 //------
 #include <gtest/gtest.h>
 
+// 아래의 코드를 암묵적 설치 / 해체를 이용해서 변경해보세요.
+#if 0
 TEST(TerminalTest, Login)
 {
     Terminal* ts = new Terminal;
@@ -42,3 +44,4 @@ TEST(TerminalTest, Logout)
     ts->Disconnect();
     delete ts;
 }
+#endif
