@@ -1,10 +1,12 @@
 // 3_테스트픽스쳐3.cpp
+#include <iostream>
 
 // SUT(System Under Test, 테스트 대상 시스템)
 //  - CUT(Class Under Test / Code Under Test)
 class Calc {
 public:
     Calc(int n) { }
+    ~Calc() { std::cout << "~Calc()" << std::endl; }
 
     double Display() { return 0.0; }
 
@@ -17,7 +19,7 @@ public:
 #include <gtest/gtest.h>
 
 // 2. Test Fixture를 설치하는 방법 3가지
-//  3) Implicit Set Up(암묵적 설치)
+//  3) Implicit Set Up / Tear Down(암묵적 설치/해체)
 //   => xUnit Test Framework이 제공하는 기능입니다.
 //   => 여러 테스트케이스에서 같은 테스트 픽스쳐 설치의 코드를 암묵적으로 호출되는
 //      함수를 통해서 처리합니다.
@@ -37,6 +39,12 @@ protected:
         std::cout << "SetUp" << std::endl;
         calc = new Calc(0);
     }
+
+    void TearDown() override
+    {
+        std::cout << "TearDown" << std::endl;
+        delete calc; // !!!
+    }
 };
 
 TEST_F(CalcTest, PressPlus)
@@ -55,6 +63,9 @@ TEST_F(CalcTest, PressPlus)
     } else {
         FAIL() << "2+2 하였을 때, 기대한 결과와 다릅니다.";
     }
+
+    // 이전의 단언문이 실패할 경우, 이후의 코드가 수행되지 않습니다.
+    // delete calc;
 }
 
 TEST_F(CalcTest, PressPlus2)
@@ -71,4 +82,6 @@ TEST_F(CalcTest, PressPlus2)
     // => xUnit 테스트 프레임워크가 제공하는 단언문을 이용해야 합니다.
     // ASSERT_EQ / NE / LT / LE / GT / GE / TRUE / FALSE ...
     ASSERT_EQ(calc->Display(), 4) << "2+2 하였을 때";
+
+    // delete calc;
 }
