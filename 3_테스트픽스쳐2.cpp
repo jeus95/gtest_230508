@@ -1,7 +1,8 @@
-// 3_테스트픽스쳐.cpp
+// 3_테스트픽스쳐2.cpp
 
 // SUT(System Under Test, 테스트 대상 시스템)
 //  - CUT(Class Under Test / Code Under Test)
+#if 0
 class Calc {
 public:
     // Calc(int n) { }
@@ -16,20 +17,9 @@ public:
 //-----
 #include <gtest/gtest.h>
 
-// 1. 테스트 픽스쳐(Test Fixture)
-// 정의: xUnit Test Framework에서 SUT를 실행하기 위해 준비해야하는 모든 것을
-//      테스트 픽스쳐 라고 합니다.
-//      테스트 픽스쳐를 구성하는 모든 코드의 로직 부분을 "픽스쳐 설치" 라고 합니다.
-
 // 2. Test Fixture를 설치하는 방법 3가지
-//  1) Inline Fixture Set Up
-//  : 모든 픽스쳐 설치를 테스트 케이스 안에서 수행합니다.
-//  장점: 픽스쳐를 설치하는 과정과 검증의 로직이 하나의 테스트 케이스 함수 안에 존재하기 때문에
-//       인과 관계를 분석하기 쉽다.
-//  단점: 모든 테스트 코드 안에서 "테스트 코드 중복"이 발생합니다.
-
-// 3. 테스트 냄새
-//  정의: 테스트 코드의 가독성 / 유지보수성 / 신뢰성을 떨어뜨리는 요소
+//  2) Delegate Set Up(위임 설치)
+//  > 픽스쳐 설치에 관한 코드를 별도의 "테스트 유틸리티 함수"를 통해 캡슐화합니다.
 
 #define SPEC(msg) printf(msg "\n")
 
@@ -70,3 +60,7 @@ TEST(CalcTest, PressPlus2)
     // ASSERT_EQ / NE / LT / LE / GT / GE / TRUE / FALSE ...
     ASSERT_EQ(calc->Display(), 4) << "2+2 하였을 때";
 }
+#endif
+
+//--------
+#include <gtest/gtest.h>
