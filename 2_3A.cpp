@@ -20,9 +20,9 @@ public:
 //     Test / Spec 접미를 붙이는 형태로 많이 사용합니다.
 
 // 2. 3A
-//  1) Arrange: 테스트 대상 코드를 초기화하고, 필요한 경우 설정하고 준비합니다.
-//  2)     Act: 테스트 대상 코드에 작용을 가합니다.
-//  3)  Assert: 기대하는 바를 단언합니다.
+//  1) Arrange / Given: 테스트 대상 코드를 초기화하고, 필요한 경우 설정하고 준비합니다.
+//  2)     Act /  When: 테스트 대상 코드에 작용을 가합니다.
+//  3)  Assert /  Then: 기대하는 바를 단언합니다.
 
 // CalcTest / CalcSpec
 
@@ -34,8 +34,12 @@ public:
 //   "유지보수의 비용이 최소화될 수 있어야 합니다."
 //   "오류가 발생할 가능성이 있는 코드를 테스트 케이스 안에서는 지양해야 합니다."
 //   - 제어 구문(조건문, 반복문, 예외 처리 등)의 사용을 최소화해야 합니다.
-
 // 3) 신뢰성
+//  > 테스트의 결과를 신뢰할 수 있는가?
+
+// 4. TDD(Test Driven Development) / BDD(Behavior Driven Development)
+//   1) 용어 - 가독성을 좀더 중요하게 생각합니다.
+//   2) 행위 기반 검증
 
 #define SPEC(msg) printf(msg "\n")
 
@@ -74,5 +78,6 @@ TEST(CalcTest, PressPlus2)
 
     // Assert
     // => xUnit 테스트 프레임워크가 제공하는 단언문을 이용해야 합니다.
+    // ASSERT_EQ / NE / LT / LE / GT / GE / TRUE / FALSE ...
     ASSERT_EQ(calc->Display(), 4) << "2+2 하였을 때";
 }
