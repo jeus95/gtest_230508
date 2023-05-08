@@ -63,7 +63,6 @@ TEST(SampleTest, Sample3)
 //    char[] / const char*
 //    - EXPECT_STREQ / STRNE
 //    - EXPECT_STRCASEEQ / STRCASENE - 대소문자 무시
-
 TEST(SampleTest2, Sample)
 {
     std::string s1 = "hello";
@@ -75,4 +74,21 @@ TEST(SampleTest2, Sample)
     // EXPECT_EQ(s3, s4); // X
     // EXPECT_STREQ(s3, s4);
     EXPECT_STRCASEEQ(s3, s4);
+}
+
+// 3. 부동 소수점 비교 단언문
+//  - EXPECT_FLOAT_EQ / NE
+//    EXPECT_DOUBLE_EQ / NE
+
+//  - EXPECT_NEAR
+//    > 오차 범위를 직접 정의할 수 있습니다.
+
+TEST(SampleTest3, Sample)
+{
+    double a = 0.7;
+    double b = 0.11 * 7;
+
+    // EXPECT_EQ(a, b); // X
+    EXPECT_DOUBLE_EQ(a, b);
+    EXPECT_NEAR(a, b, 0.00000000001);
 }
