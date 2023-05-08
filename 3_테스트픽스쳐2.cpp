@@ -2,10 +2,10 @@
 
 // SUT(System Under Test, 테스트 대상 시스템)
 //  - CUT(Class Under Test / Code Under Test)
-#if 0
+#if 1
 class Calc {
 public:
-    // Calc(int n) { }
+    Calc(int n) { }
 
     double Display() { return 0.0; }
 
@@ -20,14 +20,23 @@ public:
 // 2. Test Fixture를 설치하는 방법 3가지
 //  2) Delegate Set Up(위임 설치)
 //  > 픽스쳐 설치에 관한 코드를 별도의 "테스트 유틸리티 함수"를 통해 캡슐화합니다.
+//   "명시적으로 테스트 스위트 클래스를 제공해야 합니다."
 
 #define SPEC(msg) printf(msg "\n")
 
-TEST(CalcTest, PressPlus)
+// 1) 명시적인 테스트 스위트 클래스
+class CalcTest : public testing::Test {
+protected:
+    // 테스트 유틸리티 함수
+    Calc* CreateCalc() { return new Calc(0); }
+};
+
+// 2) 테스트 케이스 - TEST_F(테스트 스위트 이름, 테스트 케이스 이름)
+TEST_F(CalcTest, PressPlus)
 {
     SPEC("2 더하기 2를 하였을 때, 결과가 4가 나오지는 여부를 검증합니다.");
     // Arrange
-    Calc* calc = new Calc;
+    Calc* calc = CreateCalc();
 
     // Act
     calc->Enter(2);
@@ -43,11 +52,11 @@ TEST(CalcTest, PressPlus)
     }
 }
 
-TEST(CalcTest, PressPlus2)
+TEST_F(CalcTest, PressPlus2)
 {
     SPEC("2 더하기 2를 하였을 때, 결과가 4가 나오지는 여부를 검증합니다.");
     // Arrange
-    Calc* calc = new Calc;
+    Calc* calc = CreateCalc();
 
     // Act
     calc->Enter(2);
@@ -62,6 +71,7 @@ TEST(CalcTest, PressPlus2)
 }
 #endif
 
+#if 0
 //--------
 // g++ -E 3_테스트픽스쳐2.cpp -I ./googletest/googletest/include/
 #include <gtest/gtest.h>
@@ -90,10 +100,18 @@ TEST(CalcTest, PressPlus2)
 //      |                           |
 // SampleTest_foo_Test      SampleTest_goo_Test
 
-class SampleTest : public testing::Test { };
+// Test Suite class
+class SampleTest : public testing::Test {
+public:
+    void hello()
+    {
+        std::cout << "hello" << std::endl;
+    }
+};
 
 // class SampleTest_foo_Test : public SampleTest
-TEST_F(SampleTest, foo) { }
+TEST_F(SampleTest, foo) { hello(); }
 
 // class SampleTest_goo_Test : public SampleTest
-TEST_F(SampleTest, goo) { }
+TEST_F(SampleTest, goo) { hello(); }
+#endif
