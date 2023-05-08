@@ -18,19 +18,19 @@ public:
 
 class TerminalTest : public testing::Test {
 protected:
-  Terminal* ts = nullptr;
+    Terminal* ts = nullptr;
 
-  void SetUp() override
-  {
-    ts = new Terminal;
-    ts->Connect();
-  }
+    void SetUp() override
+    {
+        ts = new Terminal;
+        ts->Connect();
+    }
 
-  void TearDown() override
-  {
-    ts->Disconnect();
-    delete ts;
-  }
+    void TearDown() override
+    {
+        ts->Disconnect();
+        delete ts;
+    }
 };
 
 TEST_F(TerminalTest, Login)
