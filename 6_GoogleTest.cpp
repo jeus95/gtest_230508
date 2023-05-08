@@ -129,3 +129,25 @@ TEST(SampleTest4, OpenFile)
         FAIL() << "다른 종류의 예외가 발생하였음.";
     }
 }
+
+// 5. 테스트 비활성화
+// 1) 테스트가 유지보수의 대상일 경우, 명시적으로 실패해야 합니다.
+// 2) 테스트를 비활성화하기 위해서, 주석 처리 하면 안됩니다.
+//   "잊혀진 테스트"
+// 3) 유지보수중인 테스트를 실행하지 않는 기능이 필요합니다.
+//    테스트의 결과에 포함되지는 않지만, 존재함을 알릴 수 있어야 합니다.
+// 4) Google Test에서는 테스트 스위트 이름 또는 테스트 케이스의 이름이
+//    DISABLED_ 시작하면, 비활성화됩니다.
+// 5) 비활성화된 테스트를 구동할 수 있는 기능도 제공합니다.
+//   $ ./a.out --gtest_also_run_disabled_tests
+
+TEST(ImageProcessorTest, DISABLED_BlurImage)
+{
+    FAIL() << "작성 중입니다.";
+}
+
+class DISABLED_ImageTest : public testing::Test { };
+
+TEST_F(DISABLED_ImageTest, foo) { }
+TEST_F(DISABLED_ImageTest, goo) { }
+TEST_F(DISABLED_ImageTest, hoo) { }
