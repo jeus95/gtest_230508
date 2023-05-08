@@ -97,3 +97,18 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 #endif
+
+// Fixture
+//  : 사전 조건 / 상태
+// 1) Test Fixture - xUnit
+//    - SetUp / TearDown
+//   => TestCase 단위로 수행됩니다.
+
+// 2) Suite Fixture - xUnit
+//    - SetUpTestSuite / TearDownTestSuite
+//   => TestSuite 단위로 수행됩니다.
+//   => 정적(static) 메소드로 제공됩니다.
+
+// 3) Global Fixture - Google Test
+//   - testing::Environment / SetUp / TearDown
+//   => main 함수 AddGlobalTestEnvironment를 통해서 등록
