@@ -63,7 +63,6 @@ bool DrawImage(const std::string& url)
 
 // 1. 메모리 누수 체크를 TestSuite 클래스를 통해 처리합니다.
 // 2. 제품 코드의 메모리 관련 코드가 테스트 코드에서만 동작하도록 조건부 컴파일을 적용합니다.
-
 class ImageTest : public testing::Test {
 protected:
     int current;
