@@ -37,9 +37,24 @@ TEST_P(SampleTest, Sample)
 }
 
 // 총정리
-// Parameterized Test
+// 1. Parameterized Test
 // > 데이터 셋 정의할 때 사용하는 함수
 //  1) testing::Values
 //  2) testing::ValuesIn
 //  3) testing::Range
 //  4) testing::Combine
+
+// 2. 구글테스트에서 테스트 케이스를 만드는 방법 3가지
+// 1) TEST
+//  > 명시적인 테스트 스위트 클래스가 필요하지 않을 때
+
+// 2) TEST_F
+//  > 명시적인 테스트 스위트 클래스
+//  class SampleTest : public testing::Test {};
+//  TEST_F(SampleTest, foo) {}
+
+// 3) TEST_P
+//  > 명시적인 테스트 스위트 클래스 + 파라미터화 테스트
+//  class SampleTest : public testing::TestWithParam<InputType> {};
+//  TEST_P(SampleTest, foo)
+//  { GetParam(); }
