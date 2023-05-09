@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#define GTEST_LEAK_TEST
+
 #ifdef GTEST_LEAK_TEST
 #define DECLARE_GTEST_LEAK_TEST()         \
     static int allocCount;                \
@@ -51,6 +53,10 @@ bool DrawImage(const std::string& url)
 {
     Image* image = new Image(url);
     image->Draw();
+
+    // new Image("a.com");
+    // new Image("a.com");
+    // new Image("a.com");
 
     // ....
     // delete image;
