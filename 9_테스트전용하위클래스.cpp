@@ -23,7 +23,8 @@ public:
 
 class TestUser : public User {
 public:
-    int GetAge() const { return User::GetAge(); }
+    // int GetAge() const { return User::GetAge(); }
+    using User::GetAge;
 };
 
 TEST(UserTest, NextYear)
