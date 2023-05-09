@@ -77,6 +77,13 @@ public:
 
 #include <gtest/gtest.h>
 
+// Logger
+//  IsValidLogFilename ------> IFileSystem
+//                                 |
+//                              ---------
+//                              |       |
+//                        FileSystem  StubFileSystem
+
 // 테스트 대역은 협력 객체의 인터페이스를 구현하는 형태로 만들 수 있습니다.
 class StubFileSystem : public IFileSystem {
 public:
