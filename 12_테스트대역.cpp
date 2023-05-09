@@ -14,7 +14,12 @@ public:
 // Logger
 //   IsValidLogFilename ---X---> FileSystem
 //            |
-//             -----------> TestDouble
+//             ----------------> TestDouble
+
+// Test Double(테스트 대역)
+// - 목적: 테스트 환경을 통제하기 위해 사용합니다.
+// - 적용: 제품 코드에 테스트 대역을 적용하기 위해서는, 제품 코드가 테스트 대역을
+//        적용할 수 있는 형태로 설계되어야 합니다.
 
 class Logger {
 public:
@@ -47,7 +52,7 @@ TEST(LoggerTest, IsValidLogFilename_NameLoggerThan5Chars_ReturnsTrue)
         << "확장자를 제외한 파일명이 다섯글자 이상일 때";
 }
 
-TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnFalse)
+TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse)
 {
     Logger logger;
     std::string invalidFilename = "bad.log";
