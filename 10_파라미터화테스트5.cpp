@@ -15,6 +15,7 @@ std::vector<std::string> cars = {
 
 int years[] = { 2022, 2023, 2024 };
 
+// Combine을 사용할 때 데이터 타입을 정의하는 방법
 using CarType = std::tuple<std::string, Color, int>;
 
 class CarTest : public testing::TestWithParam<CarType> { };
@@ -36,4 +37,5 @@ TEST_P(CarTest, Sample)
         << std::get<0>(data) << ", "
         << std::get<1>(data) << ", "
         << std::get<2>(data) << std::endl;
+    FAIL();
 }
