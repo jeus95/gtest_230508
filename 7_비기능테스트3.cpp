@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+#ifdef GTEST_LEAK_TEST
 #define DECLARE_GTEST_LEAK_TEST()         \
     static int allocCount;                \
                                           \
@@ -20,6 +21,11 @@
 
 #define IMPLEMENTS_GTEST_LEAK_TEST(classname) \
     int classname::allocCount = 0
+
+#else
+#define DECLARE_GTEST_LEAK_TEST()
+#define IMPLEMENTS_GTEST_LEAK_TEST(classname)
+#endif
 
 class Image {
     std::string url;
@@ -47,7 +53,7 @@ bool DrawImage(const std::string& url)
     image->Draw();
 
     // ....
-    delete image;
+    // delete image;
 
     return true;
 }
@@ -64,13 +70,17 @@ protected:
 
     void SetUp() override
     {
+#ifdef GTEST_LEAK_TEST
         current = Image::allocCount;
+#endif
     }
 
     void TearDown() override
     {
+#ifdef GTEST_LEAK_TEST
         int diff = Image::allocCount - current;
         EXPECT_EQ(diff, 0) << diff << " object(s) leaks";
+#endif
     }
 };
 
