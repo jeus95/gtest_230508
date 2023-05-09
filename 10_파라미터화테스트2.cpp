@@ -31,7 +31,7 @@ class PrimeTest : public testing::TestWithParam<int> { };
 
 // INSTANTIATE_TEST_SUITE_P(데이터셋 접두, 테스트스위트 클래스, 데이터)
 INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
-    testing::Values(2, 3, 5, 7, 11, 13, 17, 23, 31));
+    testing::Values(2, 3, 5, 7, 11, 13, 15, 22, 17, 23, 31));
 
 // 3. 데이터 셋을 활용하는 테스트 케이스를 작성하면 됩니다.
 //         기존) class PrimeTest : public testing::Test
