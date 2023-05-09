@@ -16,28 +16,36 @@ using namespace testing;
 
 class MyTestEventListener : public testing::EmptyTestEventListener {
 public:
-    void OnTestProgramStart(const UnitTest& /*unit_test*/) override { }
+    void OnTestProgramStart(const UnitTest& /*unit_test*/) override
+    {
+        std::cout << __func__ << std::endl;
+    }
     void OnTestIterationStart(const UnitTest& /*unit_test*/,
-        int /*iteration*/) override { }
-    void OnEnvironmentsSetUpStart(const UnitTest& /*unit_test*/) override { }
-    void OnEnvironmentsSetUpEnd(const UnitTest& /*unit_test*/) override { }
-    void OnTestSuiteStart(const TestSuite& /*test_suite*/) override { }
+        int /*iteration*/) override
+    {
+        std::cout << __func__ << std::endl;
+    }
+    void OnEnvironmentsSetUpStart(const UnitTest& /*unit_test*/) override { std::cout << __func__ << std::endl; }
+    void OnEnvironmentsSetUpEnd(const UnitTest& /*unit_test*/) override { std::cout << __func__ << std::endl; }
+    void OnTestSuiteStart(const TestSuite& /*test_suite*/) override { std::cout << __func__ << std::endl; }
 
     void OnTestStart(const TestInfo& /*test_info*/) override
     {
+        std::cout << __func__ << std::endl;
     }
-    void OnTestDisabled(const TestInfo& /*test_info*/) override { }
-    void OnTestPartResult(const TestPartResult& /*test_part_result*/) override { }
-    void OnTestEnd(const TestInfo& /*test_info*/) override { }
-    void OnTestSuiteEnd(const TestSuite& /*test_suite*/) override { }
+    void OnTestDisabled(const TestInfo& /*test_info*/) override { std::cout << __func__ << std::endl; }
+    void OnTestPartResult(const TestPartResult& /*test_part_result*/) override { std::cout << __func__ << std::endl; }
+    void OnTestEnd(const TestInfo& /*test_info*/) override { std::cout << __func__ << std::endl; }
+    void OnTestSuiteEnd(const TestSuite& /*test_suite*/) override { std::cout << __func__ << std::endl; }
 
     void OnEnvironmentsTearDownStart(const UnitTest& /*unit_test*/) override
     {
+        std::cout << __func__ << std::endl;
     }
-    void OnEnvironmentsTearDownEnd(const UnitTest& /*unit_test*/) override { }
+    void OnEnvironmentsTearDownEnd(const UnitTest& /*unit_test*/) override { std::cout << __func__ << std::endl; }
     void OnTestIterationEnd(const UnitTest& /*unit_test*/,
-        int /*iteration*/) override { }
-    void OnTestProgramEnd(const UnitTest& /*unit_test*/) override { }
+        int /*iteration*/) override { std::cout << __func__ << std::endl; }
+    void OnTestProgramEnd(const UnitTest& /*unit_test*/) override { std::cout << __func__ << std::endl; }
 };
 
 // 2. 이벤트 리스너를 등록하는 방법
