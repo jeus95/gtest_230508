@@ -3,6 +3,24 @@
 #include <iostream>
 #include <string>
 
+#define DECLARE_GTEST_LEAK_TEST()         \
+    static int allocCount;                \
+                                          \
+    void* operator new(size_t size)       \
+    {                                     \
+        ++allocCount;                     \
+        return malloc(size);              \
+    }                                     \
+                                          \
+    void operator delete(void* p, size_t) \
+    {                                     \
+        --allocCount;                     \
+        free(p);                          \
+    }
+
+#define IMPLEMENTS_GTEST_LEAK_TEST(classname) \
+    int classname::allocCount = 0
+
 class Image {
     std::string url;
 
@@ -18,22 +36,10 @@ public:
     }
 
     //------
-    static int allocCount;
-
-    void* operator new(size_t size)
-    {
-        ++allocCount;
-        return malloc(size);
-    }
-
-    void operator delete(void* p, size_t)
-    {
-        --allocCount;
-        free(p);
-    }
+    DECLARE_GTEST_LEAK_TEST();
 };
 
-int Image::allocCount = 0;
+IMPLEMENTS_GTEST_LEAK_TEST(Image);
 
 bool DrawImage(const std::string& url)
 {
