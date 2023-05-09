@@ -14,12 +14,12 @@ void Connect(const std::string& url)
 #include <gtest/gtest.h>
 
 // 사용자 정의 단언문
-#define EXPECT_TIMEOUT(fn, limit)                    \
-    do {                                             \
-        time_t startTime = time(nullptr);            \
-        fn;                                          \
-        time_t duration = time(nullptr) - startTime; \
-        EXPECT_LE(duration, limit);                  \
+#define EXPECT_TIMEOUT(fn, limit)                                                \
+    do {                                                                         \
+        time_t startTime = time(nullptr);                                        \
+        fn;                                                                      \
+        time_t duration = time(nullptr) - startTime;                             \
+        EXPECT_LE(duration, limit) << "Timeout: " << limit << " second(s) 초과"; \
     } while (0)
 
 TEST(ConnectTest, Connect2)
