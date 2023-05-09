@@ -56,5 +56,6 @@ TEST_P(SampleTest, Sample)
 // 3) TEST_P
 //  > 명시적인 테스트 스위트 클래스 + 파라미터화 테스트
 //  class SampleTest : public testing::TestWithParam<InputType> {};
+//  INSTANTIATE_TEST_SUITE_P(..); /* 데이터 셋 정의 */
 //  TEST_P(SampleTest, foo)
 //  { GetParam(); }
