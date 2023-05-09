@@ -91,18 +91,17 @@ int main(int argc, char** argv)
     testing::InitGoogleTest(&argc, argv);
 
     bool check_for_leaks = false;
-    
-    for (int i = 0 ; i < argc; i++) {
+
+    for (int i = 0; i < argc; i++) {
         if (strcmp(argv[i], "--check_for_leaks") == 0) {
             check_for_leaks = true;
             break;
         }
     }
-    
+
     if (check_for_leaks) {
-      testing::UnitTest::GetInstance()->listeners().Append(new LeakChecker);
+        testing::UnitTest::GetInstance()->listeners().Append(new LeakChecker);
     }
-    
 
     return RUN_ALL_TESTS();
 }
