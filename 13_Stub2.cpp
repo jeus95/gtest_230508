@@ -39,10 +39,12 @@ public:
     {
         std::string current = time->GetCurrentTime();
         if (current == "00:00") {
+            // ...
             return 42;
         }
 
         if (current == "10:00") {
+            // ...
             return 100;
         }
 
