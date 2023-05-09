@@ -54,7 +54,7 @@ public:
 // Test Stub Pattern
 //  의도: 다른 컴포넌트로부터의 간접 입력에 의존하는 로직을 독립적으로 검증하고 싶다.
 //  방법: 실제 의존하는 객체를 테스트 대역으로 교체해서,
-//       SUT가 테스트하는데 필요한 결과를 보내도록 제어합니다.
+//       SUT가 테스트하는데 필요한 결과를 보내도록 '제어'합니다.
 
 class StubConnection : public IConnection {
 public:

@@ -11,7 +11,7 @@ public:
 
 class Clock : public Time {
 public:
-    std::string GetCurrentTime() const
+    std::string GetCurrentTime() const override
     {
         time_t rawTime;
         tm* timeInfo;
@@ -52,10 +52,25 @@ public:
 
 #include <gtest/gtest.h>
 
+class StubTime : public Time {
+    std::string result;
+
+public:
+    StubTime(const std::string r)
+        : result(r)
+    {
+    }
+
+    std::string GetCurrentTime() const override
+    {
+        return result;
+    }
+};
+
 // 00:00
 TEST(UserTest, Alarm)
 {
-    Clock clock;
+    StubTime clock("00:00");
     User user(&clock);
 
     EXPECT_EQ(user.Alarm(), 42);
@@ -64,7 +79,7 @@ TEST(UserTest, Alarm)
 // 10:00
 TEST(UserTest, Alarm2)
 {
-    Clock clock;
+    StubTime clock("10:00");
     User user(&clock);
 
     EXPECT_EQ(user.Alarm(), 100);
