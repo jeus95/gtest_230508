@@ -6,6 +6,10 @@
 // : 테스트의 이름을 잘 구성해야 합니다.
 
 // $ ./a.out --gtest_filter=ImageTest.foo
+// $ ./a.out --gtest_filter=ImageTest.foo:ImageProcessorTest.goo
+// $ ./a.out --gtest_filter=*.foo
+// $ ./a.out --gtest_filter=Image*.*
+// $ ./a.out --gtest_filter=Image*.*:-*.goo
 
 // ImageTest.foo
 TEST(ImageTest, foo) { }
