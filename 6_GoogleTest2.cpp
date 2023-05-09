@@ -50,4 +50,23 @@ TEST(SampleTest, Sample2)
 
 // 8. 테스트 결과 포맷터(Test Result Formatter)
 // : 테스트의 결과를 XML 형식으로 출력할 수 있습니다.
-// $ ./a.out --gtest_output=xml
+// $ ./a.out --gtest_output=xml|json
+
+// GoogleTest 1.10 이후: JSON 지원이 추가되었습니다.
+
+// 9. test result formatter의 결과에 추가적인 정보도 기록할 수 있습니다.
+// => RecordProperty(key, value)
+
+#define SPEC(msg)                    \
+    do {                             \
+        printf("<SPEC> " msg "\n");  \
+        RecordProperty("spec", msg); \
+    } while (0)
+
+TEST(ImageProcessorTest, ResizeImage)
+{
+    SPEC("이미지 프로세서에서 이미지 리사이즈 했을 때를 검증한다.");
+
+    RecordProperty("cpu", 30);
+    RecordProperty("mem", 10000);
+}
