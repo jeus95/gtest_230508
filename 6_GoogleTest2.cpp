@@ -56,7 +56,6 @@ TEST(SampleTest, Sample2)
 
 // 9. test result formatter의 결과에 추가적인 정보도 기록할 수 있습니다.
 // => RecordProperty(key, value)
-
 #define SPEC(msg)                    \
     do {                             \
         printf("<SPEC> " msg "\n");  \
