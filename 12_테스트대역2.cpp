@@ -45,9 +45,13 @@ class Logger {
     IFileSystem* fs;
 
 public:
-    Logger(IFileSystem* p)
+    Logger(IFileSystem* p = nullptr)
         : fs(p)
     {
+        // 기존 제품코드가 사용하던 방식과 동일한 방식으로 사용할 수 있습니다.
+        if (fs == nullptr) {
+            fs = new FileSystem;
+        }
     }
 
     // 확장자를 제외한 파일명이 5글자 이상이어야 한다.
@@ -73,9 +77,19 @@ public:
 
 #include <gtest/gtest.h>
 
+// 테스트 대역은 협력 객체의 인터페이스를 구현하는 형태로 만들 수 있습니다.
+class StubFileSystem : public IFileSystem {
+public:
+    bool IsValidFilename(const std::string& filename) override
+    {
+        return true;
+    }
+};
+
 TEST(LoggerTest, IsValidLogFilename_NameLoggerThan5Chars_ReturnsTrue)
 {
-    Logger logger;
+    StubFileSystem stub;
+    Logger logger(&stub);
     std::string validFilename = "valid.log";
 
     EXPECT_TRUE(logger.IsValidLogFilename(validFilename))
@@ -84,7 +98,8 @@ TEST(LoggerTest, IsValidLogFilename_NameLoggerThan5Chars_ReturnsTrue)
 
 TEST(LoggerTest, IsValidLogFilename_NameShorterThan5Chars_ReturnsFalse)
 {
-    Logger logger;
+    StubFileSystem stub;
+    Logger logger(&stub);
     std::string invalidFilename = "bad.log";
 
     EXPECT_FALSE(logger.IsValidLogFilename(invalidFilename))
