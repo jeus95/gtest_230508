@@ -79,7 +79,7 @@ public:
 bool operator==(const User& lhs, const User& rhs)
 {
     return false;
-  // return lhs.GetName() == rhs.GetName() &&    lhs.GetAge() == rhs.GetAge();
+    // return lhs.GetName() == rhs.GetName() &&    lhs.GetAge() == rhs.GetAge();
 }
 
 // * 사용자 정의 객체를 구글 테스트에서 제대로 표시하기 위해서는
