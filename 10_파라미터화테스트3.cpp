@@ -29,6 +29,7 @@ TEST_P(ProcessTest, Process)
 }
 #endif
 
+#if 1
 struct InputType {
     int age;
     std::string name;
@@ -54,3 +55,4 @@ TEST_P(ProcessTest, Process)
     const InputType& data = GetParam();
     EXPECT_FALSE(Process(data.age, data.name));
 }
+#endif

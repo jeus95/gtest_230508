@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 
     testing::TestEventListeners& listenerns = UnitTest::GetInstance()->listeners();
     // 기본 프린터를 제거할 수 있습니다.
-    // delete listenerns.Release(listenerns.default_result_printer());
+    delete listenerns.Release(listenerns.default_result_printer());
 
     listenerns.Append(new MyTestEventListener);
 
