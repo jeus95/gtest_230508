@@ -47,3 +47,7 @@ TEST(SampleTest, Sample2)
     EXPECT_EQ(GetCount(), 2);
     cnt = 0;
 }
+
+// 8. 테스트 결과 포맷터(Test Result Formatter)
+// : 테스트의 결과를 XML 형식으로 출력할 수 있습니다.
+// $ ./a.out --gtest_output=xml
