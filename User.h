@@ -13,6 +13,7 @@ public:
     void NextYear() { age += 1; }
 
     FRIEND_TEST(UserTest, NextYear);
+    // friend class UserTest_NextYear_Test
 };
 
 #endif
