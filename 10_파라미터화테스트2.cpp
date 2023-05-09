@@ -39,6 +39,7 @@ INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
 
 // 파라미터화테스트) class PrimeTest : public testing::TestWithParam<int>
 //            => TEST_P
+//             GetParam(): 정의된 데이터를 하나씩 가져올 수 있습니다.
 TEST_P(PrimeTest, IsPrime)
 {
     EXPECT_TRUE(IsPrime(GetParam()));
