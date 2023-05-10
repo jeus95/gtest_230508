@@ -50,3 +50,34 @@ public:
 // 동작 검증
 // > 객체에 작용을 가한 후, 내부적으로 발생하는 함수의 호출 여부, 호출 횟수, 호출 인자, 호출 순서 등을
 //   통해 정상 동작 여부를 검증합니다.
+
+// GoogleTest + GoogleMock 헤더 파일입니다.
+#include <gmock/gmock.h>
+
+// 모의 객체를 만드는 방법.
+class MockTarget : public DLoggerTarget {
+public:
+    // virtual void Write(Level level, const std::string& message) = 0;
+
+    // Mocking
+    // - MOCK_METHOD{인자개수}(함수 이름, 함수 타입);
+    MOCK_METHOD2(Write, void(Level level, const std::string& message));
+};
+
+// DLogger에 대해서 Write하였을 때, 등록된 타겟에 Write가 호출되었는지 여부를
+// 검증합니다.
+TEST(DLoggerTest, Write)
+{
+    DLogger logger;
+    MockTarget mock1, mock2;
+    logger.AddTarget(&mock1);
+    logger.AddTarget(&mock2);
+    Level test_level = INFO;
+    std::string test_message = "test logging message";
+
+    logger.Write(test_level, test_message);
+
+    // 행위 검증: EXPECT_CALL
+    EXPECT_CALL(mock1, Write(test_level, test_message));
+    EXPECT_CALL(mock2, Write(test_level, test_message));
+}
