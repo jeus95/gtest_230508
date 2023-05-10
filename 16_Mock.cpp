@@ -62,7 +62,12 @@ public:
 
     // Mocking
     // - MOCK_METHOD{인자개수}(함수 이름, 함수 타입);
-    MOCK_METHOD2(Write, void(Level level, const std::string& message));
+    // MOCK_METHOD2(Write, void(Level level, const std::string& message)); - 1.10 이전 방식
+
+    // 1.10 이후
+    //  : void Write(Level level, const std::string& message) override
+    // - MOCK_METHOD(반환값, 이름, 인자 정보, 한정자);
+    MOCK_METHOD(void, Write, (Level level, const std::string& message), (override));
 };
 
 // DLogger에 대해서 Write하였을 때, 등록된 타겟에 Write가 호출되었는지 여부를
@@ -86,3 +91,4 @@ TEST(DLoggerTest, Write)
     // Act
     logger.Write(test_level, test_message);
 }
+// 모의 객체가 파괴되는 시점에 검증을 수행합니다.
