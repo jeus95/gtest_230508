@@ -30,7 +30,7 @@ $ ar rcv libgtest.a gtest-all.o gtest_main.o
 
 ```
 
-## GoogleMock 빌드
+## GoogleTest + GoogleMock 빌드
 > GoogleTest에 의존성이 있습니다.
 
 ```
