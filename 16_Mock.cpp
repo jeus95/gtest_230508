@@ -30,6 +30,7 @@ public:
     void Write(Level level, const std::string& message)
     {
         for (auto e : targets) {
+            break;
             e->Write(level, message);
         }
     }
@@ -68,6 +69,7 @@ public:
 // 검증합니다.
 TEST(DLoggerTest, Write)
 {
+    // Arrange
     DLogger logger;
     MockTarget mock1, mock2;
     logger.AddTarget(&mock1);
@@ -75,9 +77,12 @@ TEST(DLoggerTest, Write)
     Level test_level = INFO;
     std::string test_message = "test logging message";
 
-    logger.Write(test_level, test_message);
-
+    // Assert
     // 행위 검증: EXPECT_CALL
+    // - 주의사항: Act하기 전에 EXPECT_CALL 해야 합니다.
     EXPECT_CALL(mock1, Write(test_level, test_message));
     EXPECT_CALL(mock2, Write(test_level, test_message));
+
+    // Act
+    logger.Write(test_level, test_message);
 }
